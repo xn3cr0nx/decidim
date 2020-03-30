@@ -8,15 +8,20 @@
   <%= partial "home_nav" %>
 </div>
 <div class="layout-content">
-  <%= partial "callouts_full" %>
   <div class="container">
     <h1>Decidim Admin</h1>
     <p>
-      A possible place for a Dashboard.
+      Welcome to Decidim Admin dashboard.
     </p>
-    <%= partial "logs_list" %>
-    <div class="text-center">
-      <%= link_to "See more logs", page_path("logs") %>
+
+    <div class="dashboard__row dashboard__row--3">
+      <%= partial "stats" %>
+      <%= partial "metadata" %>
+      <%= partial "help" %>
+    </div>
+    <div class="dashboard__row dashboard__row--2">
+      <%= partial "activity_graphs" %>
+      <%= partial "logs_dashboard" %>
     </div>
   </div>
 </div>

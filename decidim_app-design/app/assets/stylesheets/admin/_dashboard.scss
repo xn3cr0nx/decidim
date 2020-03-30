@@ -1,0 +1,24 @@
+.dashboard {
+  &__row {
+    @media (min-width: 800px) {
+      display: flex;
+      > * {
+        margin-right: 1rem;
+      }
+      > :last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__row--3 {
+    > * {
+      flex-basis: 33.33%;
+    }
+  }
+  &__row--2 {
+    > * {
+      flex-basis: 50%;
+    }
+  }
+}
