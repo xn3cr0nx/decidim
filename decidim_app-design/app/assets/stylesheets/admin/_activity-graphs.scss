@@ -1,34 +1,42 @@
-.activity-graphs {
-  &__card &__row {
+.activity-graphs{
+  &__card &__row{
     display: flex;
-    > * {
+
+    > *{
       margin-right: 1rem;
     }
-    > :last-child {
+
+    > :last-child{
       margin-right: 0;
     }
   }
 
-  &__row--4 {
+  &__row--4{
     flex-wrap: wrap;
-    @media (min-width: 800px) {
+
+    @media (min-width: 800px){
       flex-wrap: nowrap;
     }
-    > * {
+
+    > *{
       margin-bottom: 1rem;
-      @media (max-width: 799px) {
-        flex-basis: calc(50% - 0.5rem);
-        &:nth-child(2n) {
+
+      @media (max-width: 799px){
+        flex-basis: calc(50% - .5rem);
+
+        &:nth-child(2n){
           margin-right: 0;
         }
       }
-      @media (min-width: 800px) {
+
+      @media (min-width: 800px){
         flex-basis: 25%;
       }
     }
   }
-  &__row--2 {
-    > * {
+
+  &__row--2{
+    > *{
       flex-basis: 50%;
       margin-bottom: 1rem;
     }

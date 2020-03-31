@@ -1,28 +1,31 @@
-.dashboard {
-  &__row {
-    @media (min-width: 800px) {
+.dashboard{
+  &__row{
+    @media (min-width: 800px){
       display: flex;
-      > * {
+
+      > *{
         margin-right: 1rem;
       }
-      > :last-child {
+
+      > :last-child{
         margin-right: 0;
       }
     }
   }
 
-  &__row--3 {
-    > * {
+  &__row--3{
+    > *{
       flex-basis: 33.33%;
     }
   }
-  &__row--2 {
-    > * {
+
+  &__row--2{
+    > *{
       flex-basis: 50%;
     }
   }
 
-  &__view-more {
+  &__view-more{
     text-align: center;
     margin-top: auto;
     padding-top: 1rem;
