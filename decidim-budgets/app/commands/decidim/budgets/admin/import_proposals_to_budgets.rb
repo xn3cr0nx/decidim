@@ -27,7 +27,7 @@ module Decidim
 
         private
 
-        attr_reader :form
+        attr_reader :form, :project
 
         def create_projects_from_accepted_proposals
           transaction do
