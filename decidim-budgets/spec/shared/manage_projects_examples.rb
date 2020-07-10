@@ -66,7 +66,7 @@ shared_examples "manage projects" do
       create_list(:order, 5, budget: budget, checked_out_at: nil)
     end
 
-    xit "shows the order count" do
+    it "shows the order count" do
       visit current_path
       expect(page).to have_content("Finished votes: \n10")
       expect(page).to have_content("Pending votes: \n5")

@@ -21,6 +21,19 @@ module Decidim
         render
       end
 
+      def project_text_votes
+        render view: :project_votes,
+               locals: {
+                 container_class: "budget-list__data__number budget-list__number hide-for-medium",
+                 count_class: "display-inline",
+                 you_voted_class: "display-inline text-sm ml-xs text-success text-uppercase"
+               }
+      end
+
+      def project_text_number
+        render view: :project_number, locals: { container_class: "budget-list__data__number budget-list__number hide-for-medium" }
+      end
+
       def project_data
         render
       end

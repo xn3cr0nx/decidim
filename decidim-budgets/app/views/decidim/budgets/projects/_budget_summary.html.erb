@@ -23,8 +23,7 @@
           <% if current_order.minimum_projects_rule? %>
             <%= t(".description_minimum_projects_rule", minimum_number: current_order.minimum_projects) %>
           <% else %>
-            <% # !todo: order.budget %>
-            <%# = t(".description", minimum_budget: budget_to_currency(current_order.minimum_budget)) %>
+            <%= t(".description", minimum_budget: budget_to_currency(current_order.minimum_budget)) %>
           <% end %>
         </p>
       <% end %>
@@ -38,8 +37,7 @@
       </span>
     </div>
 
-    <% # !todo: order - budget %>
-    <%#= render partial: "order_progress" %>
+    <%= render partial: "order_progress" %>
 
     <div>
       <span class="mini-title">
