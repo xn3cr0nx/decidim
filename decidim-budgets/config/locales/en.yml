@@ -110,6 +110,7 @@ en:
             total_budget: Total budget
         project:
           fields:
+            scope: Scope
             title: Title
       order_summary_mailer:
         order_summary:
@@ -206,6 +207,8 @@ en:
             more_information: More information
             projects_per_page: Projects per page
             resources_permissions_enabled: Actions permissions can be set for each meeting
+            scope_id: Scope
+            scopes_enabled: Scopes enabled
             title: Title
             total_budget: Total budget
             vote_minimum_budget_projects_number: Minimum number of projects to vote
