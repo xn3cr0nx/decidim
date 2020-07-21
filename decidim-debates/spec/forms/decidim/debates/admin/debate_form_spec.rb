@@ -27,15 +27,25 @@ describe Decidim::Debates::Admin::DebateForm do
   let(:end_time) { 2.days.from_now + 4.hours }
   let(:category) { create :category, participatory_space: participatory_process }
   let(:category_id) { category.id }
+  let(:parent_scope) { create(:scope, organization: organization) }
+  let(:scope) { create(:subscope, parent: parent_scope) }
+  let(:scope_id) { scope.id }
   let(:attributes) do
     {
       decidim_category_id: category_id,
+      decidim_scope_id: scope_id,
       title: title,
       description: description,
       instructions: instructions,
       start_time: start_time,
       end_time: end_time
     }
+  end
+
+  describe "scope" do
+    let(:form) { subject }
+
+    it_behaves_like "a scopable resource"
   end
 
   it { is_expected.to be_valid }

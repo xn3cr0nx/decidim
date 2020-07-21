@@ -29,6 +29,7 @@ module Decidim
 
         def create_debate
           params = {
+            scope: form.scope,
             category: form.category,
             title: form.title,
             description: form.description,

@@ -101,6 +101,7 @@ RSpec.shared_examples "manage debates" do
     page.find(".datepicker-dropdown .minute", text: "12:50").click
 
     within ".new_debate" do
+      scope_pick select_data_picker(:debate_decidim_scope_id), scope
       select translated(category.name), from: :debate_decidim_category_id
 
       find("*[type=submit]").click

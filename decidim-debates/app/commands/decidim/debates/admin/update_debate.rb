@@ -33,6 +33,7 @@ module Decidim
           Decidim.traceability.update!(
             debate,
             form.current_user,
+            scope: form.scope,
             category: form.category,
             title: form.title,
             description: form.description,

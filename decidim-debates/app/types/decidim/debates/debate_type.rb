@@ -4,6 +4,7 @@ module Decidim
   module Debates
     DebateType = GraphQL::ObjectType.define do
       interfaces [
+        -> { Decidim::Core::ScopableInterface },
         -> { Decidim::Core::CategorizableInterface },
         -> { Decidim::Comments::CommentableInterface },
         -> { Decidim::Core::AuthorableInterface }

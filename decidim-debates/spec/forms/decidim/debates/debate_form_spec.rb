@@ -16,14 +16,24 @@ describe Decidim::Debates::DebateForm do
   let(:current_component) { create :component, participatory_space: participatory_process, manifest_name: "debates" }
   let(:title) { "My title" }
   let(:description) { "My description" }
+  let(:parent_scope) { create(:scope, organization: organization) }
+  let(:scope) { create(:subscope, parent: parent_scope) }
+  let(:scope_id) { scope.id }
   let(:category) { create :category, participatory_space: participatory_process }
   let(:category_id) { category.id }
   let(:attributes) do
     {
+      decidim_scope_id: scope_id,
       category_id: category_id,
       title: title,
       description: description
     }
+  end
+
+  describe "scope" do
+    let(:form) { subject }
+
+    it_behaves_like "a scopable resource"
   end
 
   it { is_expected.to be_valid }

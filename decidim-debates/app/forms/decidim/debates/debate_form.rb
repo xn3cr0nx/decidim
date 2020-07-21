@@ -9,6 +9,7 @@ module Decidim
       attribute :title, String
       attribute :description, String
       attribute :category_id, Integer
+      attribute :decidim_scope_id, Integer
       attribute :user_group_id, Integer
       attribute :debate, Debate
 
@@ -44,6 +45,20 @@ module Decidim
         return unless debate.respond_to?(:editable_by?)
 
         errors.add(:debate, :invalid) unless debate.editable_by?(current_user)
+      end
+      
+      # Finds the Scope from the given decidim_scope_id, uses component scope if missing.
+      #
+      # Returns a Decidim::Scope
+      def scope
+        @scope ||= @decidim_scope_id ? current_component.scopes.find_by(id: @decidim_scope_id) : current_component.scope
+      end
+
+      # Scope identifier
+      #
+      # Returns the scope identifier related to the debate
+      def decidim_scope_id
+        @decidim_scope_id || scope&.id
       end
     end
   end

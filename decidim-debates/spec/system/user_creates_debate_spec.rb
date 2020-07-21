@@ -13,6 +13,7 @@ describe "User creates debate", type: :system do
   context "when creating a new debate" do
     let(:user) { create :user, :confirmed, organization: organization }
     let!(:category) { create :category, participatory_space: participatory_space }
+    let(:scope) { create :scope, organization: organization }
 
     context "when the user is logged in" do
       before do
@@ -45,6 +46,7 @@ describe "User creates debate", type: :system do
             fill_in :debate_title, with: "Should every organization use Decidim?"
             fill_in :debate_description, with: "Add your comments on whether Decidim is useful for every organization."
             select translated(category.name), from: :debate_category_id
+            scope_pick select_data_picker(:debate_decidim_scope_id), scope
 
             find("*[type=submit]").click
           end
@@ -53,6 +55,7 @@ describe "User creates debate", type: :system do
           expect(page).to have_content("Should every organization use Decidim?")
           expect(page).to have_content("Add your comments on whether Decidim is useful for every organization.")
           expect(page).to have_content(translated(category.name))
+          expect(page).to have_content(translated(scope.name))
           expect(page).to have_selector(".author-data", text: user.name)
         end
 
@@ -68,6 +71,7 @@ describe "User creates debate", type: :system do
               fill_in :debate_title, with: "Should every organization use Decidim?"
               fill_in :debate_description, with: "Add your comment on whether Decidim is useful for every organization."
               select translated(category.name), from: :debate_category_id
+              scope_pick select_data_picker(:debate_decidim_scope_id), scope
               select user_group.name, from: :debate_user_group_id
 
               find("*[type=submit]").click
@@ -77,6 +81,7 @@ describe "User creates debate", type: :system do
             expect(page).to have_content("Should every organization use Decidim?")
             expect(page).to have_content("Add your comment on whether Decidim is useful for every organization.")
             expect(page).to have_content(translated(category.name))
+            expect(page).to have_content(translated(scope.name))
             expect(page).to have_selector(".author-data", text: user_group.name)
           end
         end
