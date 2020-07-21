@@ -51,6 +51,10 @@ describe "User creates meeting", type: :system do
         let(:meeting_end_time) { meeting_start_time + 4.hours }
         let(:meeting_scope) { create :scope, organization: organization }
 
+        before do
+          component.update!(settings: { scopes_enabled: true, scope_id: participatory_process.scope&.id, creation_enabled_for_participants: true })
+        end
+
         context "and rich_editor_public_view component setting is enabled" do
           before do
             organization.update(rich_text_editor_in_public_views: true)
