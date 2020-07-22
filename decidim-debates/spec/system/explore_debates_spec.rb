@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Explore debates", type: :system do
+describe "Explore debates", :slow, type: :system do
   include_context "with a component"
   let(:manifest_name) { "debates" }
 
@@ -19,10 +19,12 @@ describe "Explore debates", type: :system do
       end_time: Time.zone.local(2016, 12, 13, 16, 17)
     )
   end
+  let!(:debate) { debates.first }
 
   before do
-    component_scope = create :scope, parent: participatory_process.scope
-    component.update!(settings: { scopes_enabled: true, scope_id: component_scope.id })
+    component_scope = create :subscope, parent: scope
+    component_settings = component["settings"]["global"].merge!(scopes_enabled: true, scope_id: component_scope.id)
+    component.update!(settings: component_settings)
     switch_to_host(organization.host)
   end
 
@@ -127,19 +129,21 @@ describe "Explore debates", type: :system do
       context "when filtering by scope" do
         it "allows filtering by scope" do
           scope = create(:scope, organization: organization)
-          debate = debates.first
+          # debate = debates.first
           debate.scope = scope
           debate.save
 
           visit_component
 
           within ".scope_id_check_boxes_tree_filter" do
-            check "All"
             uncheck "All"
             check translated(scope.name)
           end
 
-          expect(page).to have_css(".card--debate", count: 1)
+          within "#debates" do
+            expect(page).to have_css(".card--debate", count: 1)
+            expect(page).to have_content(translated(debate.title))
+          end
         end
       end
 
@@ -149,16 +153,20 @@ describe "Explore debates", type: :system do
         end
 
         it "can be filtered by category" do
-          create_list(:debate, 3, component: component)
-          create(:debate, component: component, category: category)
+          debate.category = create(:category, participatory_space: component.participatory_space)
+          debate.save
 
           visit_component
 
-          within "form.new_filter" do
-            select category.name[I18n.locale.to_s], from: "filter[category_id]"
+          within ".category_id_check_boxes_tree_filter" do
+            uncheck "All"
+            check translated(category.name)
           end
 
-          expect(page).to have_css(".card--debate", count: 1)
+          within "#debates" do
+            expect(page).to have_css(".card--debate", count: 1)
+            expect(page).to have_content(translated(project.title))
+          end
         end
       end
     end

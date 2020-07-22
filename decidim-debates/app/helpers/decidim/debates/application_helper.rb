@@ -8,6 +8,7 @@ module Decidim
       include PaginateHelper
       include Decidim::Comments::CommentsHelper
       include Decidim::RichTextEditorHelper
+      include Decidim::CheckBoxesTreeHelper
 
       # If the debate is official or the rich text editor is enabled on the
       # frontend, the debate description is considered as safe content.

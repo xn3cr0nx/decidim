@@ -92,6 +92,7 @@ en:
           official: Official
           origin: Origin
           search: Search
+          scope: Scope
         filters_small_view:
           close_modal: Close modal
           filter: Filter
