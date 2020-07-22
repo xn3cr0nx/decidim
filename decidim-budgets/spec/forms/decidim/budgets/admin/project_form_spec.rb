@@ -24,7 +24,8 @@ module Decidim::Budgets
       Decidim::Faker::Localized.sentence(3)
     end
     let(:budget_amount) { Faker::Number.number(8) }
-    let(:scope) { create :scope, organization: organization }
+    let(:parent_scope) { create(:scope, organization: organization) }
+    let(:scope) { create(:subscope, parent: parent_scope) }
     let(:scope_id) { scope.id }
     let(:category) { create :category, participatory_space: participatory_process }
     let(:category_id) { category.id }
@@ -37,6 +38,8 @@ module Decidim::Budgets
         budget_amount: budget_amount
       }
     end
+
+    it_behaves_like "a scopable resource"
 
     it { is_expected.to be_valid }
 
@@ -113,46 +116,6 @@ module Decidim::Budgets
         it "sets the proposal_ids correctly" do
           project.link_resources([proposal], "included_proposals")
           expect(subject.proposal_ids).to eq [proposal.id]
-        end
-      end
-    end
-
-    describe "scope" do
-      subject { form.scope }
-
-      context "when the scope exists" do
-        it { is_expected.to be_kind_of(Decidim::Scope) }
-      end
-
-      context "when the scope does not exist" do
-        let(:scope_id) { 3456 }
-
-        it { is_expected.to eq(nil) }
-      end
-
-      context "when the scope is from another organization" do
-        let(:scope_id) { create(:scope).id }
-
-        it { is_expected.to eq(nil) }
-      end
-
-      context "when the participatory space has a scope" do
-        let(:parent_scope) { create(:scope, organization: organization) }
-        let(:participatory_process) { create(:participatory_process, :with_steps, organization: organization, scope: parent_scope) }
-        let(:scope) { create(:scope, organization: organization, parent: parent_scope) }
-
-        context "when the scope is descendant from participatory space scope" do
-          it { is_expected.to eq(scope) }
-        end
-
-        context "when the scope is not descendant from participatory space scope" do
-          let(:scope) { create(:scope, organization: organization) }
-
-          it { is_expected.to be_valid }
-
-          it "makes the form invalid" do
-            expect(form).to be_invalid
-          end
         end
       end
     end
