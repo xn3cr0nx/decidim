@@ -34,6 +34,8 @@
 // = require decidim/assets
 // = require decidim/floating_help
 
+// = require decidim/evote_check_nota
+
 /* globals svg4everybody */
 
 window.Decidim = window.Decidim || {};
