@@ -1,5 +1,7 @@
 FROM decidim/decidim:latest-test
 
+RUN gem install bundler
+
 RUN apt-get update && apt-get install -y vim zsh
 
 ENV EDITOR=vim
