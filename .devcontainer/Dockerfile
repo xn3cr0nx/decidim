@@ -1,4 +1,4 @@
-FROM decidim/decidim:latest-dev
+FROM decidim/decidim:latest-test
 
 RUN sudo apt-get update && sudo apt-get install -y vim
 ENV EDITOR=vim
