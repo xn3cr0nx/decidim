@@ -9,30 +9,30 @@
   <main>
     <%= partial "process_header" %>
     <div class="wrapper">
+      <div class="row column m-bottom">
+        <button class="button tiny hollow button--nomargin">Edit</button>
+
+        <button class="button tiny secondary hollow button--nomargin button--has-dropdown" data-toggle="actions-menu">
+          Actions
+        </button>
+        <div class="dropdown-pane dropdown-menu" id="actions-menu"
+          data-dropdown
+          data-hover="true"
+          data-hover-pane="true"
+          data-v-offset="0"
+          data-position="bottom"
+          data-alignment="left">
+          <ul>
+            <li><a href="#">Print</a></li>
+            <li><a href="#">Commitee Members</a></li>
+            <li><a href="#">Attachments</a></li>
+            <li><a href="#">Send to technical validation</a></li>
+          </ul>
+        </div>
+      </div>
       <div class="row column view-header">
         <h2 class="heading2">Cobriment de la Ronda de Dalt al seu pas per la Vall d'Hebrón</h2>
         <%= partial "author_data" %>
-        <div>
-          <button class="button tiny hollow button--nomargin">Editar</button>
-
-          <button class="button tiny secondary hollow button--nomargin button--has-dropdown" data-toggle="process-nav__hide-content-2">
-            Acciones
-          </button>
-          <div class="dropdown-pane" id="process-nav__hide-content-2"
-            data-dropdown
-            data-hover="true"
-            data-hover-pane="true"
-            data-v-offset="0"
-            data-position="bottom"
-            data-alignment="left">
-            <ul>
-              <li><a href="#">Trobades</a></li>
-              <li><a href="#">Perdudes</a></li>
-              <li><a href="#">Xarrades</a></li>
-              <li><a href="#">Més trobades</a></li>
-            </ul>
-          </div>
-        </div>
       </div>
 
       <div class="row">
