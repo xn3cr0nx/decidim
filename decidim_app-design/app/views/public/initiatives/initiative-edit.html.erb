@@ -12,27 +12,29 @@
       <div class="row column view-header">
         <h2 class="heading2">Cobriment de la Ronda de Dalt al seu pas per la Vall d'Hebrón</h2>
         <%= partial "author_data" %>
+        <div>
+          <button class="button tiny hollow button--nomargin">Editar</button>
 
-      </div>
-      <div class="row column process-nav__content" id="process-nav-content-2" data-toggler=".is-active">
-        <button class="button tiny process-nav__more show-for-medium" data-toggle="process-nav__hide-content-2">
-          Acciones <i></i><i></i><i></i>
-        </button>
-        <div class="dropdown-pane process-nav__hidden-content" id="process-nav__hide-content-2"
-          data-dropdown
-          data-hover="true"
-          data-hover-pane="true"
-          data-v-offset="-25"
-          data-position="bottom"
-          data-alignment="right">
-          <ul>
-            <li><a href="#" class="process-nav__link">Trobades</a></li>
-            <li><a href="#" class="process-nav__link">Perdudes</a></li>
-            <li><a href="#" class="process-nav__link">Xarrades</a></li>
-            <li><a href="#" class="process-nav__link">Més trobades</a></li>
-          </ul>
+          <button class="button tiny secondary hollow button--nomargin button--has-dropdown" data-toggle="process-nav__hide-content-2">
+            Acciones
+          </button>
+          <div class="dropdown-pane" id="process-nav__hide-content-2"
+            data-dropdown
+            data-hover="true"
+            data-hover-pane="true"
+            data-v-offset="0"
+            data-position="bottom"
+            data-alignment="left">
+            <ul>
+              <li><a href="#">Trobades</a></li>
+              <li><a href="#">Perdudes</a></li>
+              <li><a href="#">Xarrades</a></li>
+              <li><a href="#">Més trobades</a></li>
+            </ul>
+          </div>
         </div>
       </div>
+
       <div class="row">
         <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
           <div class="card extra">

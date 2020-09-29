@@ -517,3 +517,17 @@
     }
   }
 }
+
+.button--has-dropdown {
+  &:after{
+    content: "";
+    @include square(5px);
+    border-radius: 100%;
+    background-color: currentColor;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: .1rem;
+    margin-right: .75rem;
+    box-shadow: 6.5px 0 0, 13px 0 0;
+  }
+}
