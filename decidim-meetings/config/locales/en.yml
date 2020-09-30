@@ -91,6 +91,7 @@ en:
             resources_permissions_enabled: Actions permissions can be set for each meeting
             scope_id: Scope
             scopes_enabled: Scopes enabled
+            terms_and_conditions_url_for_meeting_creators: Terms and conditions URL for meeting creators
           step:
             announcement: Announcement
             comments_blocked: Comments blocked
@@ -253,8 +254,16 @@ en:
             update: Update
           form:
             address_help: 'Address: used by Geocoder to find the location'
+            available_slots_link_help: Leave it to 0 if you have unlimited slots available
+            disclaimer: "Disclaimer: By using an external registration system, you're aware that the organizers of %{organization} aren't responsible for the data provided by the users to the external service."
+            external_registration_system_link_help: 'Link: allow participants to go to external service you are using for registrations'
             location_help: 'Location: message directed to the users implying the spot to meet at'
             location_hints_help: 'Location hints: additional info. Example: the floor of the building'
+            select_a_registration_type: Please select a registration type
+            select_a_meeting_type: Please select a meeting type
+            terms_and_conditions: 'I agree to the '
+            terms_and_conditions_text: terms and conditions.
+            online_meeting_link_help: 'Link: allow participants to connect directly to your meeting'
           index:
             title: Meetings
           new:
@@ -392,10 +401,18 @@ en:
           unfold: Unfold
         form:
           address_help: 'Address: used by Geocoder to find the location'
+          available_slots_link_help: Leave it to 0 if you have unlimited slots available
           create_as: Create meeting as
+          disclaimer: "Disclaimer: By using an external registration system, you're aware that the organizers of %{organization} aren't responsible for the data provided by the users to the external service."
+          external_registration_system_link_help: 'Link: allow participants to go to external service you are using for registrations'
           location_help: 'Location: message directed to the users implying the spot to meet at'
           location_hints_help: 'Location hints: additional info. Example: the floor of the building'
+          online_meeting_link_help: 'Link: allow participants to connect directly to your meeting'
           select_a_category: Please select a category
+          select_a_registration_type: Please select a registration type
+          select_a_meeting_type: Please select a meeting type
+          terms_and_conditions: 'I agree to the '
+          terms_and_conditions_text: terms and conditions.
         index:
           new_meeting: New meeting
         meeting_minutes:
@@ -473,6 +490,13 @@ en:
       types:
         private_meeting: Private meeting
         transparent: Transparent
+      type_of_meeting:
+          in_person: In person
+          online: Online
+      registration_type:
+          registration_disabled: Registrations disabled
+          on_this_platform: On this platform
+          another_registration_system: On another registration system
       versions:
         back_to_resource: Go back to meeting
     metrics:

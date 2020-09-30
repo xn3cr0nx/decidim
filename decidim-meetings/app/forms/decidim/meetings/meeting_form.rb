@@ -4,6 +4,8 @@ module Decidim
   module Meetings
     # This class holds a Form to create/update meetings for Participants and UserGroups.
     class MeetingForm < Decidim::Form
+      include TranslatableAttributes
+
       attribute :title, String
       attribute :description, String
       attribute :location, String
@@ -17,12 +19,24 @@ module Decidim
       attribute :decidim_scope_id, Integer
       attribute :decidim_category_id, Integer
       attribute :user_group_id, Integer
+      attribute :online_meeting_link, String
+      attribute :registration_type, String
+      attribute :type_of_meeting, String
+      attribute :external_registration_system_link, String
+      attribute :terms_and_conditions, Boolean
+      attribute :available_slots, Integer, default: 0
+      attribute :registration_terms, String
+
+      TYPE_OF_MEETING = %w(in_person online).freeze
+      REGISTRATION_TYPE = %w(registration_disabled on_this_platform another_registration_system).freeze
 
       validates :title, presence: true
       validates :description, presence: true
-      validates :location, presence: true
+      validates :type_of_meeting, presence: true
+      validates :location, presence: true, if: ->(form) { form.type_of_meeting == "in_person" }
       validates :address, presence: true
       validates :address, geocoding: true, if: -> { Decidim.geocoder.present? }
+      validates :online_meeting_link, presence: true, if: ->(form) { form.type_of_meeting == "online" }
       validates :start_time, presence: true, date: { before: :end_time }
       validates :end_time, presence: true, date: { after: :start_time }
 
@@ -60,6 +74,24 @@ module Decidim
         return unless current_component
 
         @category ||= categories.find_by(id: decidim_category_id)
+      end
+
+      def type_of_meeting_select
+        TYPE_OF_MEETING.map do |type|
+          [
+            I18n.t("type_of_meeting.#{type}", scope: "decidim.meetings"),
+            type
+          ]
+        end
+      end
+
+      def registration_type_select
+        REGISTRATION_TYPE.map do |type|
+          [
+            I18n.t("registration_type.#{type}", scope: "decidim.meetings"),
+            type
+          ]
+        end
       end
     end
   end

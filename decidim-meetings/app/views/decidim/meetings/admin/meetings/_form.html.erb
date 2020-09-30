@@ -12,18 +12,30 @@
     </div>
 
     <div class="row column">
-      <%= form.text_field :address %>
-      <p class="help-text"><%= t(".address_help") %></p>
+      <%= form.select :type_of_meeting,
+                      @form.type_of_meeting_select,
+                      { include_blank: t(".select_a_meeting_type") },
+                      { multiple: false } %>
     </div>
-
-    <div class="row column">
+          
+    <div class="row column" id="location">
       <%= form.translated :text_area, :location %>
       <p class="help-text"><%= t(".location_help") %></p>
     </div>
 
     <div class="row column">
+      <%= form.text_field :address %>
+      <p class="help-text"><%= t(".address_help") %></p>
+    </div>
+
+    <div class="row column">
       <%= form.translated :text_area, :location_hints %>
       <p class="help-text"><%= t(".location_hints_help") %></p>
+    </div>
+
+    <div class="row column" id="meeting_online_meeting_link">
+      <%= form.text_field :online_meeting_link %>
+      <p class="help-text"><%= t(".online_meeting_link_help") %></p>
     </div>
 
     <div class="row">
@@ -47,6 +59,29 @@
       </div>
     </div>
 
+    <div class="row column">
+      <%= form.select :registration_type,
+                  @form.registration_type_select,
+                  { include_blank: t(".select_a_registration_type") },
+                  { multiple: false } %>
+    </div>
+
+    <div class="row column" id="meeting_available_slots">
+      <%= form.number_field :available_slots %>
+      <p class="help-text"><%= t(".available_slots_link_help") %></p>
+    </div>
+
+    <div class="row column" id="meeting_registration_terms">
+      <%= form.translated :editor, :registration_terms, lines: 10 %>
+    </div>
+
+    <div class="row column" id="meeting_external_registration_system_link">
+      <%= form.text_field :external_registration_system_link %>
+      <p class="help-text"><%= t(".external_registration_system_link_help") %></p>
+      <label><%= t(".disclaimer", organization: current_organization.name) %></label>
+      <br>
+    </div>
+
     <div class="row column" id="private_meeting">
       <%= form.check_box :private_meeting %>
     </div>
@@ -54,6 +89,12 @@
     <div class="row column" id="transparent">
       <%= form.check_box :transparent %>
     </div>
+
+    <div class="row column" id="transparent">
+      <%= form.check_box :terms_and_conditions, 
+      label: sanitize(t(".terms_and_conditions") + link_to( t(".terms_and_conditions_text"), component_settings.terms_and_conditions_url_for_meeting_creators)) %>
+    </div>
+
   </div>
 </div>
 

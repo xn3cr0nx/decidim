@@ -36,6 +36,7 @@ module Decidim
           category: form.category,
           title: parsed_title,
           description: parsed_description,
+          type_of_meeting: form.type_of_meeting,
           end_time: form.end_time,
           start_time: form.start_time,
           address: form.address,

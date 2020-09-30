@@ -46,13 +46,18 @@ module Decidim
             category: form.category,
             title: parsed_title,
             description: parsed_description,
+            type_of_meeting: form.type_of_meeting,
             end_time: form.end_time,
             start_time: form.start_time,
+            online_meeting_link: form.online_meeting_link,
             address: form.address,
             latitude: form.latitude,
             longitude: form.longitude,
             location: form.location,
             location_hints: form.location_hints,
+            registration_type: form.registration_type,
+            available_slots: form.available_slots,
+            external_registration_system_link: form.external_registration_system_link,
             private_meeting: form.private_meeting,
             transparent: form.transparent
           )

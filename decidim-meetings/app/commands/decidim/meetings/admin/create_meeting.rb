@@ -38,8 +38,10 @@ module Decidim
             category: form.category,
             title: parsed_title,
             description: parsed_description,
+            type_of_meeting: form.type_of_meeting,
             end_time: form.end_time,
             start_time: form.start_time,
+            online_meeting_link: form.online_meeting_link,
             address: form.address,
             latitude: form.latitude,
             longitude: form.longitude,
@@ -48,7 +50,10 @@ module Decidim
             private_meeting: form.private_meeting,
             transparent: form.transparent,
             author: form.current_organization,
+            registration_type: form.registration_type,
             registration_terms: form.current_component.settings.default_registration_terms,
+            available_slots: form.available_slots,
+            external_registration_system_link: form.external_registration_system_link,
             component: form.current_component,
             questionnaire: Decidim::Forms::Questionnaire.new
           }
