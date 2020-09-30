@@ -35,8 +35,13 @@ module Decidim
       validates :address, presence: true
       validates :address, geocoding: true, if: -> { Decidim.geocoder.present? }
       validates :online_meeting_link, presence: true, if: ->(form) { form.type_of_meeting == "online" }
+      validates :registration_terms, presence: true, if: ->(form) { form.registration_type == "on_this_platform" }
+      validates :available_slots, numericality: { greater_than_or_equal_to: 0 }, if: ->(form) { form.registration_type == "on_this_platform" }
       validates :start_time, presence: true, date: { before: :end_time }
+      validates :external_registration_system_link, presence: true, if: ->(form) { form.registration_type == "another_registration_system" }
       validates :end_time, presence: true, date: { after: :start_time }
+      validates :terms_and_conditions, presence: true
+      validates :registration_type, presence: true
 
       validates :current_component, presence: true
       validates :category, presence: true, if: ->(form) { form.decidim_category_id.present? }

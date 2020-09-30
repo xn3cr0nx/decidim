@@ -35,6 +35,13 @@ FactoryBot.define do
     questionnaire { build(:questionnaire) }
     registration_form_enabled { true }
     component { build(:component, manifest_name: "meetings") }
+    online_meeting_link { "https://decidim.org" }
+    registration_type { "on_this_platform" }
+    type_of_meeting { "online" }
+    terms_and_conditions { true }
+    external_registration_system_link { "https://decidim.org" }
+    available_slots { 0 }
+    registration_terms { "registration terms" }
 
     author do
       component.try(:organization)

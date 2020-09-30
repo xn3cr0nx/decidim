@@ -18,6 +18,13 @@ module Decidim::Meetings
     let(:longitude) { 2.1234 }
     let(:start_time) { 1.day.from_now }
     let(:user_group_id) { nil }
+    let(:type_of_meeting) { "online" }
+    let(:online_meeting_link) { "http://decidim.org" }
+    let(:available_slots) { 0 }
+    let(:registration_terms) { "registration_terms" }
+    let(:registration_type) { "on_this_platform" }
+    let(:external_registration_system_link) { "http://decidim.org" }
+    let(:terms_and_conditions) { true }
     let(:form) do
       double(
         invalid?: invalid,
@@ -35,7 +42,14 @@ module Decidim::Meetings
         user_group_id: user_group_id,
         current_user: current_user,
         current_component: current_component,
-        current_organization: organization
+        current_organization: organization,
+        type_of_meeting: type_of_meeting,
+        online_meeting_link: online_meeting_link,
+        available_slots: available_slots,
+        registration_terms: registration_terms,
+        registration_type: registration_type,
+        external_registration_system_link: external_registration_system_link,
+        terms_and_conditions: terms_and_conditions
       )
     end
 

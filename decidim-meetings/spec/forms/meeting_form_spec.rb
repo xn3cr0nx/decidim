@@ -33,6 +33,13 @@ module Decidim::Meetings
     let(:category_id) { category.id }
     let(:private_meeting) { false }
     let(:transparent) { true }
+    let(:type_of_meeting) { "online" }
+    let(:online_meeting_link) { "http://decidim.org" }
+    let(:available_slots) { 0 }
+    let(:registration_terms) { "registration_terms" }
+    let(:registration_type) { "on_this_platform" }
+    let(:external_registration_system_link) { "http://decidim.org" }
+    let(:terms_and_conditions) { true }
     let(:attributes) do
       {
         decidim_scope_id: scope_id,
@@ -46,7 +53,14 @@ module Decidim::Meetings
         start_time: start_time,
         end_time: end_time,
         private_meeting: private_meeting,
-        transparent: transparent
+        transparent: transparent,
+        type_of_meeting: type_of_meeting,
+        online_meeting_link: online_meeting_link,
+        available_slots: available_slots,
+        registration_terms: registration_terms,
+        registration_type: registration_type,
+        external_registration_system_link: external_registration_system_link,
+        terms_and_conditions: terms_and_conditions
       }
     end
 
@@ -70,7 +84,8 @@ module Decidim::Meetings
       it { is_expected.not_to be_valid }
     end
 
-    describe "when location is missing" do
+    describe "when location is missing and type of meeting is in_person" do
+      let(:type_of_meeting) { "in_person" }
       let(:location) { nil }
 
       it { is_expected.not_to be_valid }
@@ -128,6 +143,49 @@ module Decidim::Meetings
       meeting = create(:meeting, component: current_component, category: category)
 
       expect(described_class.from_model(meeting).decidim_category_id).to eq(category_id)
+    end
+
+    describe "when terms and conditions is missing" do
+      let(:terms_and_conditions) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when online meeting link is missing and type of meeting is online" do
+      let(:online_meeting_link) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when registration type is missing" do
+      let(:registration_type) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when type of meeting is missing" do
+      let(:type_of_meeting) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when registration terms is missing and registration type is on this platform" do
+      let(:registration_terms) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when available slots is missing and registration type is on this platform" do
+      let(:available_slots) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when external registration system link is missing and registration type is on another platform" do
+      let(:registration_type) { "another_registration_system" }
+      let(:external_registration_system_link) { nil }
+
+      it { is_expected.not_to be_valid }
     end
   end
 end
