@@ -51,9 +51,10 @@ module Decidim
             transparent: form.transparent,
             author: form.current_organization,
             registration_type: form.registration_type,
-            registration_terms: form.current_component.settings.default_registration_terms,
+            registration_terms: form.registration_terms,
             available_slots: form.available_slots,
             external_registration_system_link: form.external_registration_system_link,
+            terms_and_conditions: form.terms_and_conditions,
             component: form.current_component,
             questionnaire: Decidim::Forms::Questionnaire.new
           }

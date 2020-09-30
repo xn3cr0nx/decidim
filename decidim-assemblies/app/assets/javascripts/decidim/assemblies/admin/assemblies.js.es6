@@ -55,7 +55,6 @@ $(() => {
       });
 
       $assemblyCreatedBy.on("change", (ev) => {
-        debugger
         const $target = $(ev.target);
         toggleDependsOnSelect($target, $assemblyCreatedByOther);
       });

@@ -56,7 +56,13 @@ module Decidim
             location: form.location,
             location_hints: form.location_hints,
             author: form.current_user,
-            decidim_user_group_id: form.user_group_id
+            decidim_user_group_id: form.user_group_id,
+            registration_type: form.registration_type,
+            registration_terms: form.registration_terms,
+            available_slots: form.available_slots,
+            external_registration_system_link: form.external_registration_system_link,
+            terms_and_conditions: form.terms_and_conditions,
+            online_meeting_link: form.online_meeting_link
           },
           visibility: "public-only"
         )

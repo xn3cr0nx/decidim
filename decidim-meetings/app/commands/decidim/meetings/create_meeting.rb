@@ -46,8 +46,13 @@ module Decidim
           location_hints: form.location_hints,
           author: form.current_user,
           decidim_user_group_id: form.user_group_id,
-          registration_terms: form.current_component.settings.default_registration_terms,
-          component: form.current_component
+          registration_terms: form.registration_terms,
+          component: form.current_component,
+          available_slots: form.available_slots,
+          external_registration_system_link: form.external_registration_system_link,
+          registration_type: form.registration_type,
+          online_meeting_link: form.online_meeting_link,
+          terms_and_conditions: form.terms_and_conditions
         }
 
         @meeting = Decidim.traceability.create!(

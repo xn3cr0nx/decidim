@@ -56,6 +56,7 @@ module Decidim
             location: form.location,
             location_hints: form.location_hints,
             registration_type: form.registration_type,
+            registration_terms: form.registration_terms,
             available_slots: form.available_slots,
             external_registration_system_link: form.external_registration_system_link,
             private_meeting: form.private_meeting,

@@ -2,7 +2,6 @@
     $(() => {
       const $form = $(".meetings_form");
         if ($form.length > 0) {
-            debugger
             
             const $meetingTypeOfMeeting = $form.find("#meeting_type_of_meeting");
             const $meetingOnlineMeetingLink = $form.find("#meeting_online_meeting_link")
