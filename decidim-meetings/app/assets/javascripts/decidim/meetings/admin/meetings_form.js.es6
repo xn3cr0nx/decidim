@@ -79,7 +79,6 @@
   const $form = $(".edit_meeting, .new_meeting, .copy_meetings");
 
   if ($form.length > 0) {
-
     const $privateMeeting = $form.find("#private_meeting");
     const $transparent = $form.find("#transparent");
 

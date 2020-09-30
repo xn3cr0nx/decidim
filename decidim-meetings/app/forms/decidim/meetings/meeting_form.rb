@@ -4,8 +4,6 @@ module Decidim
   module Meetings
     # This class holds a Form to create/update meetings for Participants and UserGroups.
     class MeetingForm < Decidim::Form
-      include TranslatableAttributes
-
       attribute :title, String
       attribute :description, String
       attribute :location, String

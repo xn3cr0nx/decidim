@@ -34,14 +34,6 @@ edit_link(
       <%= link_to t(".edit_meeting"), edit_meeting_path(meeting), class: "button secondary hollow expanded button-sc button--icon follow-button" %>
     <% end %>
 
-    <% if meeting.type_of_meeting == "in_person" %>
-      <%= t(".location")%>
-      <p class="help-text"><%= t(".location_help") %></p>
-    <% elsif meeting.type_of_meeting == "online" %>
-      <%= meeting.online_meeting_link %>
-      <p class="help-text"><%= t(".online_meeting_link_help") %></p>
-    <% end %>
-
     <div class="card extra">
       <div class="card__content">
         <div class="extra__date">
@@ -79,7 +71,7 @@ edit_link(
           </div>
         </div>
       <% end %>
-    </div> 
+    </div>
 
     <% if registration.present? %>
       <div class="card extra">
