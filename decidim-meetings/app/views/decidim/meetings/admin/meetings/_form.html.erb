@@ -91,8 +91,7 @@
     </div>
 
     <div class="row column" id="transparent">
-      <%= form.check_box :terms_and_conditions, 
-      label: sanitize(t(".terms_and_conditions") + link_to( t(".terms_and_conditions_text"), component_settings.terms_and_conditions_url_for_meeting_creators)) %>
+      <%= form.check_box :terms_and_conditions, label: sanitize(t(".terms_and_conditions") + link_to( t(".terms_and_conditions_text"), component_settings.terms_and_conditions_url_for_meeting_creators)) %>
     </div>
 
   </div>

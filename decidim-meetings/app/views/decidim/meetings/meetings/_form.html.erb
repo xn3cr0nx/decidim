@@ -59,7 +59,7 @@
 </div>
 
 <div class="row column" id="meeting_available_slots">
-  <%= form.number_field :available_slots, value: 0%>
+  <%= form.number_field :available_slots, value: 0 %>
   <p class="help-text"><%= t(".available_slots_link_help") %></p>
 </div>
 
@@ -84,8 +84,7 @@
 </div>
 
 <div class="row column" id="transparent">
-  <%= form.check_box :terms_and_conditions, 
-  label: sanitize(t(".terms_and_conditions") + link_to( t(".terms_and_conditions_text"), component_settings.terms_and_conditions_url_for_meeting_creators)) %>
+  <%= form.check_box :terms_and_conditions, label: sanitize(t(".terms_and_conditions") + link_to( t(".terms_and_conditions_text"), component_settings.terms_and_conditions_url_for_meeting_creators)) %>
   <br>
 </div>
 
