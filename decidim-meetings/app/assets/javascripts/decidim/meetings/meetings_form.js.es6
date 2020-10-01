@@ -4,6 +4,7 @@
     if ($form.length > 0) {
       const $meetingTypeOfMeeting = $form.find("#meeting_type_of_meeting");
       const $meetingOnlineMeetingLink = $form.find("#meeting_online_meeting_link")
+      const $meetingAddress = $form.find("#address");
       const $meetingLocation = $form.find("#location");
       const $meetingRegistrationType = $form.find("#meeting_registration_type");
       const $meetingRegistrationTerms = $form.find("#meeting_registration_terms");
@@ -32,10 +33,12 @@
       $meetingTypeOfMeeting.on("change", (ev) => {
         const $target = $(ev.target);
         toggleDependsOnSelect($target, $meetingLocation, "in_person");
+        toggleDependsOnSelect($target, $meetingAddress, "in_person");
         toggleDependsOnSelect($target, $meetingOnlineMeetingLink, "online");
       });
 
       toggleDependsOnSelect($meetingTypeOfMeeting, $meetingLocation, "in_person");
+      toggleDependsOnSelect($meetingTypeOfMeeting, $meetingAddress, "in_person");
       toggleDependsOnSelect($meetingTypeOfMeeting, $meetingOnlineMeetingLink, "online");
     }
   })
