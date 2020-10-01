@@ -49,6 +49,13 @@ describe "User creates meeting", type: :system do
         let(:longitude) { 2.1234 }
         let!(:meeting_start_time) { Time.current + 2.days }
         let(:meeting_end_time) { meeting_start_time + 4.hours }
+        let(:meeting_type_of_meeting) { "online" }
+        let(:online_meeting_link) { "http://decidim.org" }
+        let(:meeting_available_slots) { 0 }
+        let(:meeting_registration_terms) { "registration_terms" }
+        let(:meeting_registration_type) { "on_this_platform" }
+        let(:meeting_external_registration_system_link) { "http://decidim.org" }
+        let(:meeting_terms_and_conditions) { true }
         let(:meeting_scope) { create :scope, organization: organization }
         let(:datetime_format) { I18n.t("time.formats.decidim_short") }
         let(:time_format) { I18n.t("time.formats.time_of_day") }
@@ -84,6 +91,13 @@ describe "User creates meeting", type: :system do
             fill_in :meeting_end_time, with: meeting_end_time.strftime(datetime_format)
             select translated(category.name), from: :meeting_decidim_category_id
             scope_pick select_data_picker(:meeting_decidim_scope_id), meeting_scope
+            fill_in :meeting_online_meeting_link, with: meeting_online_meeting_link
+            fill_in :meeting_type_of_meeting, with: meeting_type_of_meeting
+            fill_in :meeting_available_slots, with: meeting_available_slots
+            fill_in :meeting_registration_terms, with: meeting_registration_terms
+            fill_in :meeting_registration_type, with: meeting_registration_type
+            fill_in :meeting_external_registration_system_link, with: meeting_external_registration_system_link
+            fill_in :meeting_terms_and_conditions, with: meeting_terms_and_conditions
 
             find("*[type=submit]").click
           end
@@ -115,6 +129,13 @@ describe "User creates meeting", type: :system do
               fill_in :meeting_location, with: meeting_location
               fill_in :meeting_location_hints, with: meeting_location_hints
               fill_in :meeting_address, with: meeting_address
+              fill_in :meeting_online_meeting_link, with: meeting_online_meeting_link
+              fill_in :meeting_type_of_meeting, with: meeting_type_of_meeting
+              fill_in :meeting_available_slots, with: meeting_available_slots
+              fill_in :meeting_registration_terms, with: meeting_registration_terms
+              fill_in :meeting_registration_type, with: meeting_registration_type
+              fill_in :meeting_external_registration_system_link, with: meeting_external_registration_system_link
+              fill_in :meeting_terms_and_conditions, with: meeting_terms_and_conditions
               fill_in :meeting_start_time, with: meeting_start_time.strftime(datetime_format)
               fill_in :meeting_end_time, with: meeting_end_time.strftime(datetime_format)
               select translated(category.name), from: :meeting_decidim_category_id
