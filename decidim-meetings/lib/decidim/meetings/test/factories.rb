@@ -41,7 +41,7 @@ FactoryBot.define do
     terms_and_conditions { true }
     external_registration_system_link { "https://decidim.org" }
     available_slots { 0 }
-    registration_terms { "registration terms" }
+    registration_terms { Decidim::Faker::Localized.wrapped("<p>", "</p>") { generate_localized_title } }
 
     author do
       component.try(:organization)
