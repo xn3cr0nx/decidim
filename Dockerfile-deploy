@@ -1,0 +1,17 @@
+ARG base_image=xn3cr0nx/azione-decidim:latest
+
+FROM $base_image
+LABEL maintainer="patrick.jusic@protonmail.com"
+
+ENV RAILS_ENV=production
+ENV PORT=3000
+
+ONBUILD COPY Gemfile Gemfile.lock ./
+ONBUILD RUN bundle install
+ONBUILD COPY . .
+ONBUILD RUN bundle install
+ONBUILD RUN bundle exec rake assets:precompile
+
+ENTRYPOINT []
+ENV RAILS_SERVE_STATIC_FILES=true
+CMD bundle exec rails s
