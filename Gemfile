@@ -4,6 +4,8 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
+gem 'rails', '~> 5.2.4.3'
+
 gem "decidim", path: "."
 gem "decidim-conferences", path: "."
 gem "decidim-consultations", path: "."
@@ -17,6 +19,8 @@ gem "puma", ">= 4.3.5"
 gem "uglifier", "~> 4.1"
 
 gem "faker", "~> 1.9"
+
+gem 'minitest', '~> 5.14'
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri

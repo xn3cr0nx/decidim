@@ -1,32 +1,78 @@
-version: '3'
+version: '3.7'
+
+x-env: &env development
+x-decidim: &decidim 0.22.0
+x-ruby: &ruby 
+  RUBY_VERSION: 2.6.6
+x-pg-env: &pg-env
+  POSTGRES_USER: &pg-user postgres
+  POSTGRES_PASSWORD:
+  POSTGRES_DB: &pg-db azione-decidim_development
+  POSTGRES_HOST_AUTH_METHOD: trust
+
+x-admin: &admin
+  ADMIN_EMAIL: decidim@azione.it
+  ADMIN_PASSWORD: azione
+x-org: &org
+  ORG_NAME: PartecipAzione
+  ORG_HOST: localhost:3000
+
 services:
   decidim:
-    image: decidim/decidim:latest-dev
-    entrypoint: /usr/local/bin/entrypoint.sh
-    command: decidim
-    working_dir: /code
+    container_name: decidim
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        decidim_version: *decidim
     ports:
       - 3000:3000
     volumes:
-      - .:/code
+      # - .:/code
       - gems:/usr/local/bundle:delegated
     environment:
-      - DATABASE_HOST=pg
-      - DATABASE_USERNAME=postgres
+      PORT: 3000
+      DATABASE_HOST: pg
+      DATABASE_USERNAME: *pg-user
+      DATABASE_NAME: *pg-db
+      RAILS_ENV: *env
+      REDIS_URL: redis://redis:6379
+      <<: [*ruby, *admin, *org]
+    depends_on:
+      - pg
+      - redis
     links:
       - pg
       - redis
+    networks:
+      - decidim
+
   pg:
     image: postgres
+    container_name: pg
+    ports:
+      - 5432:5432
     volumes:
       - pg-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
+      <<: *pg-env
+    networks:
+      - decidim
+
   redis:
+    container_name: redis_decidim
     image: redis
+    ports:
+      - 6379:6379
     volumes:
       - redis-data:/data
+    networks:
+      - decidim
+
 volumes:
   gems: {}
   pg-data: {}
   redis-data: {}
+
+networks:
+  decidim:
